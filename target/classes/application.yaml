@@ -1,0 +1,100 @@
+spring:
+  profiles:
+    active: local
+---
+
+camunda:
+  bpm:
+    admin-user:
+      password: demo
+      id: demo
+      first-name: Demo
+      last-name: Demo
+      email: info@uuuu.com
+
+spring:
+  application:
+    name: camundapostgres
+
+  profiles: local
+
+  server:
+    port: 8082
+
+  datasource:
+    url: jdbc:h2:file:./target/h2db/db/access;DB_CLOSE_DELAY=-1
+    username: access
+    password:
+    driver-class: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+---
+
+#camunda:
+#  admin-user:
+#    id: demo
+#    password: demo
+#  bpm:
+#    database:
+#      type: postgres
+#    table-prefix: camunda.
+#    schema-update: true
+
+server:
+  port: 8082
+
+camunda:
+  bpm:
+    admin-user:
+      password: demo
+      id: demo
+      first-name: Demo
+      last-name: Demo
+      email: info@uuuu.com
+
+spring:
+  application:
+    name: camundapostgres
+
+  profiles: server
+
+  main:
+    allow-bean-definition-overriding: true
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+        ddl-auto: update
+  datasource:
+    driverClassName: org.postgresql.Driver
+      #DB connection:
+    url: jdbc:postgresql://localhost:5432/mycamunda?stringtype=unspecified  #${example.datasource.url}
+    username: postgres
+    password: postgres #${DB_PASSWORD} #
+
+
+
+#spring:
+#  profiles: server
+#  main:
+#    allow-bean-definition-overriding: true
+#  jpa:
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#  datasource:
+#    driverClassName: org.postgresql.Driver
+#    #DB connection:
+#    url: jdbc:postgresql://localhost:5432/mycamunda?stringtype=unspecified
+#    username: postgres
+#    password: postgres
+
+
+
